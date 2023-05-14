@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for the entry point of the command interpreter."""
+"""Entry point of the command interpreter."""
 
 import cmd
 from models.base_model import BaseModel
@@ -10,17 +10,17 @@ import json
 
 class HBNBCommand(cmd.Cmd):
 
-    """Class for the command interpreter."""
+    """Class for the cmd interpreter."""
 
     prompt = "(hbnb) "
 
     def default(self, line):
-        """Catch commands if nothing else matches then."""
+        """Catch commands if no matches then."""
         # print("DEF:::", line)
         self._precmd(line)
 
     def _precmd(self, line):
-        """Intercepts commands to test for class.syntax()"""
+        """testing for class.syntax()"""
         # print("PRECMD:::", line)
         match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if not match:
@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
         return command
 
     def update_dict(self, classname, uid, s_dict):
-        """Helper method for update() with a dictionary."""
+        """Helper method for update() with a dict."""
         s = s_dict.replace("'", '"')
         d = json.loads(s)
         if not classname:
@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.all()[key].save()
 
     def do_EOF(self, line):
-        """Handles End Of File character.
+        """end Of File character handler.
         """
         print()
         return True
@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
             print(b.id)
 
     def do_show(self, line):
-        """Prints the string representation of an instance.
+        """outputs/prints the string representation of an instance.
         """
         if line == "" or line is None:
             print("** class name missing **")
@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
             print(len(matches))
 
     def do_update(self, line):
-        """Updates an instance by adding or updating attribute.
+        """Updates an instance by adding/updating attribute.
         """
         if line == "" or line is None:
             print("** class name missing **")
